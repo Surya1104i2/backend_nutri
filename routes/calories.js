@@ -18,19 +18,37 @@ router.post('/', authMiddleware, async (req, res) => {
       activityLevel || 'moderately'
     );
 
-    const newUser = new User({
-      user: req.user.id, // Assuming req.user contains the authenticated user's ID
-      name,
-      age,
-      gender,
-      height,
-      weight,
-      activityLevel: activityLevel || 'moderately',
-      calorieResults
-    });
+   // Check if user data already exists
+const existingUser = await User.findOne({ user: req.user.id });
 
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
+if (existingUser) {
+  // Update existing user data
+  existingUser.name = name;
+  existingUser.age = age;
+  existingUser.gender = gender;
+  existingUser.height = height;
+  existingUser.weight = weight;
+  existingUser.activityLevel = activityLevel || 'moderately';
+  existingUser.calorieResults = calorieResults;
+
+  const updatedUser = await existingUser.save();
+  return res.status(200).json(updatedUser);
+} else {
+  // Create new user record
+  const newUser = new User({
+    user: req.user.id,
+    name,
+    age,
+    gender,
+    height,
+    weight,
+    activityLevel: activityLevel || 'moderately',
+    calorieResults
+  });
+
+  const savedUser = await newUser.save();
+  return res.status(201).json(savedUser);
+}
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
