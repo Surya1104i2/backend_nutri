@@ -67,7 +67,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const FoodItem = require("../models/Fooditem");
 
-mongoose.connect("mongodb://localhost:27017/fitness-app", {
+mongoose.connect("mongodb+srv://Surya_prakash:Prakash_1104@cluster0.zhlkoc9.mongodb.net/food?retryWrites=true&w=majority&appName=food-app", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

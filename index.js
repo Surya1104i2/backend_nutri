@@ -18,7 +18,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://Surya_prakash:Prakash_1104@cluster0.zhlkoc9.mongodb.net/?retryWrites=true&w=majority&appName=food-app')
+mongoose.connect('mongodb+srv://Surya_prakash:Prakash_1104@cluster0.zhlkoc9.mongodb.net/food?retryWrites=true&w=majority&appName=food-app')
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
