@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-const userRoutes = require('../routes/calories');
-const foodRoutes = require('../routes/food');
+const userRoutes = require('./routes/calories');
+const foodRoutes = require('./routes/food');
 
 dotenv.config();
 
 const app = express();
 const PORT = 5000;
 
-const authRoutes = require('../routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Middleware
 app.use(cors());
