@@ -26,6 +26,15 @@ mongoose.connect('mongodb+srv://Surya_prakash:Prakash_1104@cluster0.zhlkoc9.mong
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/food', foodRoutes);
+
+app.get('/', (req, res) => {
+  console.log(process.env.JWT_SALT);
+  res.json("API is running");
+});
+
+app.get('/hello', (req, res) => {
+  res.json("API is running");
+});
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
